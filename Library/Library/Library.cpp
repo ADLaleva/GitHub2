@@ -64,7 +64,7 @@ void returnBook(int answer)
     else if (answer=1)
     {
 
-        cout << rateBook;
+        rateBook();
     }
     else
     {
@@ -87,8 +87,11 @@ int MainMenu()
 	cout << "Welcome this is the main menu, please make a choice:\n";
 	cout << "1 - List of books\n";
 	cout << "2 - Add a book\n";
-	cout << "3 - See your ratings\n";
-    cout << "4 - Exit\n";
+    cout << "3 - Search book\n";
+    cout << "4 - Order book\n";
+    cout << "5 - Return book\n";
+	cout << "6 - See your ratings\n";
+    cout << "0 - Exit\n";
 	cout << "Selection: ";
 	cin >> choice;
 	selection(choice);
