@@ -10,6 +10,7 @@ struct Book
 	string author;
 	string genre;
 	int rating;
+    //идк
 };
 
 int MainMenu() 
