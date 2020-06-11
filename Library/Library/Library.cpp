@@ -55,10 +55,10 @@ void showBook(BOOK *book[100], int *numberOfbooks)
 void rateBook(BOOK book)
 {
     cout << "Select a number from 1 to 10:" << endl;
-    cin >> rating;
-    if ((rating >= 1) && (rating <= 10))
+    cin >> book.rating;
+    if ((book.rating >= 1) && (book.rating <= 10))
     {
-        cout << "Thanks you for rating this book with a score of " << rating << endl;
+        cout << "Thanks you for rating this book with a score of " <<book.rating << endl;
     }
     else
     {
