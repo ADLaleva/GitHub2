@@ -50,6 +50,7 @@ void showBook(BOOK book[100], int numberOfbooks)
         cout << book[i].name << endl;
         cout << book[i].author << endl;
         cout << book[i].genre << endl;
+        cout << book[i].year << endl;
         cout << book[i].rating << endl;
 
     }
@@ -61,7 +62,7 @@ void rateBook(BOOK book)
     cin >> book.rating;
     if ((book.rating >= 1) && (book.rating <= 10))
     {
-        cout << "Thanks you for rating this book with a score of " <<book.rating << endl;
+        cout << "Thank you for rating this book with a score of " <<book.rating << endl;
     }
     else
     {
@@ -86,7 +87,7 @@ void returnBook(int answer, BOOK book)
 
         rateBook(book);
     }
-    else
+    else if (answer=0)
     {
         //return the book
     }
