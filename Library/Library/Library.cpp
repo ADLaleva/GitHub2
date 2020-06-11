@@ -122,9 +122,18 @@ int selection(int selection)
         //List
         break;
     case 2:
-        //Add a book
+        void addBook()
         break;
     case 3:
+        //Search Book
+        break;
+    case 4:
+        //Order Book
+        break;
+    case 5:
+        //Return book
+        break;
+    case 6:
         //See your ratings
         break;
     default:
