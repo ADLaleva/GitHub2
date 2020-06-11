@@ -52,12 +52,19 @@ void showBook(BOOK *book[100], int *numberOfbooks)
     }
 };
 
-void rateBook()
+void rateBook(BOOK book)
 {
-
-
-
-
+    cout << "Select a number from 1 to 10:" << endl;
+    cin >> rating;
+    if ((rating >= 1) && (rating <= 10))
+    {
+        cout << "Thanks you for rating this book with a score of " << rating << endl;
+    }
+    else
+    {
+        cout << "Please, input a valid number!" << endl;
+        rateBook();
+    }
 };
 
 
