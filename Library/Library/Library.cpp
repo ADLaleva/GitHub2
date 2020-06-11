@@ -9,6 +9,7 @@ struct BOOK
 	string name;
 	string author;
 	string genre;
+    int year;
 	int rating;
     
 };
@@ -36,10 +37,12 @@ void addBook(BOOK book [100], int numberOfbooks )
         cout << "Genre:" << endl;
         cin >> book[i].genre;
 
+        cout << "Year of publishing:" << endl;
+        cin >> book[i].year;
     }
 };
 
-void showBook(BOOK *book[100], int *numberOfbooks)
+void showBook(BOOK book[100], int numberOfbooks)
 {
     for (int i = 0; i < numberOfbooks; i++)
     {
@@ -63,12 +66,12 @@ void rateBook(BOOK book)
     else
     {
         cout << "Please, input a valid number!" << endl;
-        rateBook();
+        rateBook(book);
     }
 };
 
 
-void returnBook(int answer) 
+void returnBook(int answer, BOOK book) 
 {
     cout << "Would you like to rate the book before returning it? (for YES- type 1, for NO- type 0)   " << endl;
     cin >> answer;
@@ -81,7 +84,7 @@ void returnBook(int answer)
     else if (answer=1)
     {
 
-        rateBook();
+        rateBook(book);
     }
     else
     {
@@ -119,10 +122,10 @@ int selection(int selection)
     switch (selection)
     {
     case 1:
-        //List
+        void showBook();
         break;
     case 2:
-        void addBook()
+        void addBook();
         break;
     case 3:
         //Search Book
@@ -131,7 +134,7 @@ int selection(int selection)
         //Order Book
         break;
     case 5:
-        //Return book
+        void returnBook();
         break;
     case 6:
         //See your ratings
