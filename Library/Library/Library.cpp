@@ -13,33 +13,43 @@ struct BOOK
     
 };
 
-void addBook(BOOK book)
+void addBook(BOOK book [100], int numberOfbooks )
 {
-    cout << "Please " << endl;
+    cout << "how many books would you like to add?";
+    cout << "Number of books:" << endl;
+    cin >> numberOfbooks;
 
-    cout << "ID:" << endl;
-    cin >> book.id;
 
-    cout << "Book name:" << endl;
-    cin >> book.name;
+    for (int i = 0; i < numberOfbooks; i++)
+    {
+        cout << "Please " << endl;
 
-    cout << "Author:" << endl;
-    cin >> book.author;
+        cout << "ID:" << endl;
+        cin >> book[i].id;
 
-    cout << "Genre:" << endl;
-    cin >> book.genre;
+        cout << "Book name:" << endl;
+        cin >> book[i].name;
 
-   
+        cout << "Author:" << endl;
+        cin >> book[i].author;
+
+        cout << "Genre:" << endl;
+        cin >> book[i].genre;
+
+    }
 };
 
-void showBook(BOOK book)
+void showBook(BOOK *book[100], int *numberOfbooks)
 {
-    cout<< book.id << endl;
-    cout << book.name << endl;
-    cout<< book.author << endl;
-    cout<< book.genre << endl;
-    
-    cout<< book.rating << endl;
+    for (int i = 0; i < numberOfbooks; i++)
+    {
+        cout << book[i].id << endl;
+        cout << book[i].name << endl;
+        cout << book[i].author << endl;
+        cout << book[i].genre << endl;
+        cout << book[i].rating << endl;
+
+    }
 };
 
 void rateBook()
