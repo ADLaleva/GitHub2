@@ -113,6 +113,7 @@ void selection(int& selection, BOOK book[100], BOOK bookOrder[100], int& booksTo
     case 1:
         showBook(book, booksTotal);
         MainMenu(book, bookOrder, booksTotal, booksTotalBeforeAddition, rateableBook, orderedBooksNumber);
+        break;
     case 2:
         addBook(book, booksTotal, booksTotalBeforeAddition);
         MainMenu(book, bookOrder, booksTotal, booksTotalBeforeAddition, rateableBook, orderedBooksNumber);
@@ -132,6 +133,9 @@ void selection(int& selection, BOOK book[100], BOOK bookOrder[100], int& booksTo
     case 6:
         //See your ratings
         MainMenu(book, bookOrder, booksTotal, booksTotalBeforeAddition, rateableBook, orderedBooksNumber);
+        break;
+    case 0:
+        cout << "Goodbye!";
         break;
     default:
         MainMenu(book, bookOrder, booksTotal, booksTotalBeforeAddition, rateableBook, orderedBooksNumber);
