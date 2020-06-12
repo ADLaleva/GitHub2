@@ -13,18 +13,18 @@ struct BOOK
 	int rating;
 };
 
-void addBook(BOOK &book[100], int &numberOfbooks, int &numberOfBooksBeforeAddition)
+void addBook(BOOK book[100], int &numberOfBooks, int &numberOfBooksBeforeAddition)
 {
     int numberOfAddedBooks;
-    cout << "How many books would you like to add?";
-    cout << "Number of books:" << endl;
+    cout << "How many books would you like to add?" << endl;
+    cout << "Number of books:";
     cin >> numberOfAddedBooks;
-
+    numberOfBooks += numberOfAddedBooks;
 
     for (int i = numberOfBooksBeforeAddition; i < numberOfBooksBeforeAddition+numberOfAddedBooks; i++)
     {
-        book[i].id=i
-        cout << "Please insert values" << endl;\
+        book[i].id = i;
+        cout << "Please insert values" << endl;
 
         cout << "Book name:" << endl;
         cin >> book[i].name;
@@ -38,12 +38,12 @@ void addBook(BOOK &book[100], int &numberOfbooks, int &numberOfBooksBeforeAdditi
         cout << "Year of publishing:" << endl;
         cin >> book[i].year;
     }
-    numberOfbooks+=numberOfbooks
-};
+    numberOfBooksBeforeAddition = numberOfBooks;
+}
 
-void showBook(BOOK &book[100], int &numberOfbooks)
+void showBook(BOOK book[100], int &numberOfBooks)
 {
-    for (int i = 0; i < numberOfbooks; i++)
+    for (int i = 0; i < numberOfBooks; i++)
     {
         cout << book[i].id << endl;
         cout << book[i].name << endl;
@@ -53,9 +53,9 @@ void showBook(BOOK &book[100], int &numberOfbooks)
         cout << book[i].rating << endl;
 
     }
-};
+}
 
-void rateBook(BOOK &book)
+void rateBook(BOOK book)
 {
     cout << "Select a number from 1 to 10:" << endl;
     cin >> book.rating;
@@ -68,43 +68,60 @@ void rateBook(BOOK &book)
         cout << "Please, input a valid number!" << endl;
         rateBook(book);
     }
-};
-
-
-void returnBook(int &answer, BOOK &book) 
-{
-    cout << "Would you like to rate the book before returning it? (for YES- type 1, for NO- type 0)   " << endl;
-    cin >> answer;
-
-    if (answer != 1 || answer != 0)
-    {
-
-        cout << "Please, input a valid number!" << endl;
-    }
-    else if (answer=1)
-    {
-
-        rateBook(book);
-    }
-    else if (answer=0)
-    {
-        //return the book
-    }
-
-
-
 }
 
 
+void returnBook(BOOK book[100], int numberOfOrderedBooks) 
+{
+    int answer;
+    cout << "Which book would you like to rate?";
+    showBook(book, numberOfOrderedBooks);
+    cin >> answer;
+    
+    for (int i = 0; i < numberOfOrderedBooks; i++)
+    {
+        if (answer==book[i].id)
+        {
+            rateBook(book[i]);
+        }
+    }
+}
 
 
+void selection(int &selection, BOOK book[100], BOOK bookOrder[100], int &booksTotal, int &booksTotalBeforeAddition, BOOK &rateableBook, int orderedBooksNumber)
+{
+    switch (selection)
+    {
+    case 1:
+        showBook(book,booksTotal);
+        break;
+    case 2:
+        addBook(book,booksTotal,booksTotalBeforeAddition);
+        break;
+    case 3:
+        //Search Book
+        break;
+    case 4:
+        //Order Book
+        break;
+    case 5:
+        returnBook(bookOrder, orderedBooksNumber);
+        break;
+    case 6:
+        //See your ratings
+        break;
+    default:
+        break;
+    }
+}
 
-int MainMenu() 
+
+void MainMenu(BOOK book[100], BOOK bookOrder[100],int &booksTotal, int &booksTotalBeforeAddition, BOOK &rateableBook, int &orderedBooksNumber) 
 {
 	int choice;
 
 	cout << "Main Menu\n";
-	cout << "Welcome this is the main menu, please make a choice:\n";
+	cout << "Welcome! This is the main menu, please make a choice:\n";
 	cout << "1 - List of books\n";
 	cout << "2 - Add a book\n";
     cout << "3 - Search book\n";
@@ -114,39 +131,13 @@ int MainMenu()
     cout << "0 - Exit\n";
 	cout << "Selection: ";
 	cin >> choice;
-	selection(choice);
+	selection(choice,book,bookOrder,booksTotal,booksTotalBeforeAddition,rateableBook, orderedBooksNumber);
 }
 
-int selection(int selection)
-{
-    switch (selection)
-    {
-    case 1:
-        showBook();
-        break;
-    case 2:
-        addBook();
-        break;
-    case 3:
-        //Search Book
-        break;
-    case 4:
-        //Order Book
-        break;
-    case 5:
-        returnBook();
-        break;
-    case 6:
-        //See your ratings
-        break;
-    default:
-        break;
-    }
-
-}
 
 int main()
 {
-    int books = 0, booksBeforeAddition = books;
-
+    BOOK books[100], orderedBooks[100],lonelyBook;
+    int booksTotal = 0, booksBeforeAddition = booksTotal, orderedBooksNumber;
+    MainMenu(books,orderedBooks,booksTotal,booksBeforeAddition, lonelyBook, orderedBooksNumber);
 }
