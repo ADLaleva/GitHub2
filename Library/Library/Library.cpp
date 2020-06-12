@@ -11,22 +11,20 @@ struct BOOK
 	string genre;
     int year;
 	int rating;
-    
 };
 
-void addBook(BOOK book [100], int numberOfbooks )
+void addBook(BOOK &book[100], int &numberOfbooks, int &numberOfBooksBeforeAddition)
 {
-    cout << "how many books would you like to add?";
+    int numberOfAddedBooks;
+    cout << "How many books would you like to add?";
     cout << "Number of books:" << endl;
-    cin >> numberOfbooks;
+    cin >> numberOfAddedBooks;
 
 
-    for (int i = 0; i < numberOfbooks; i++)
+    for (int i = numberOfBooksBeforeAddition; i < numberOfBooksBeforeAddition+numberOfAddedBooks; i++)
     {
-        cout << "Please " << endl;
-
-        cout << "ID:" << endl;
-        cin >> book[i].id;
+        book[i].id=i
+        cout << "Please insert values" << endl;\
 
         cout << "Book name:" << endl;
         cin >> book[i].name;
@@ -40,9 +38,10 @@ void addBook(BOOK book [100], int numberOfbooks )
         cout << "Year of publishing:" << endl;
         cin >> book[i].year;
     }
+    numberOfbooks+=numberOfbooks
 };
 
-void showBook(BOOK book[100], int numberOfbooks)
+void showBook(BOOK &book[100], int &numberOfbooks)
 {
     for (int i = 0; i < numberOfbooks; i++)
     {
@@ -56,7 +55,7 @@ void showBook(BOOK book[100], int numberOfbooks)
     }
 };
 
-void rateBook(BOOK book)
+void rateBook(BOOK &book)
 {
     cout << "Select a number from 1 to 10:" << endl;
     cin >> book.rating;
@@ -72,7 +71,7 @@ void rateBook(BOOK book)
 };
 
 
-void returnBook(int answer, BOOK book) 
+void returnBook(int &answer, BOOK &book) 
 {
     cout << "Would you like to rate the book before returning it? (for YES- type 1, for NO- type 0)   " << endl;
     cin >> answer;
@@ -123,10 +122,10 @@ int selection(int selection)
     switch (selection)
     {
     case 1:
-        void showBook();
+        showBook();
         break;
     case 2:
-        void addBook();
+        addBook();
         break;
     case 3:
         //Search Book
@@ -135,7 +134,7 @@ int selection(int selection)
         //Order Book
         break;
     case 5:
-        void returnBook();
+        returnBook();
         break;
     case 6:
         //See your ratings
@@ -148,5 +147,6 @@ int selection(int selection)
 
 int main()
 {
+    int books = 0, booksBeforeAddition = books;
 
 }
