@@ -12,8 +12,52 @@ struct BOOK
     int year;
 	int rating;
 };
+void rateBook(BOOK book)
+{
+    cout << "Select a number from 1 to 10:" << endl;
+    cin >> book.rating;
+    if ((book.rating >= 1) && (book.rating <= 10))
+    {
+        cout << "Thank you for rating this book with a score of " << book.rating << endl;
+    }
+    else
+    {
+        cout << "Please, input a valid number!" << endl;
+        rateBook(book);
+    }
+}
 
-void addBook(BOOK book[100], int &numberOfBooks, int &numberOfBooksBeforeAddition)
+void showBook(BOOK book[100], int& numberOfBooks)
+{
+    for (int i = 0; i < numberOfBooks; i++)
+    {
+        cout << book[i].id << endl;
+        cout << book[i].name << endl;
+        cout << book[i].author << endl;
+        cout << book[i].genre << endl;
+        cout << book[i].year << endl;
+        cout << book[i].rating << endl;
+
+    }
+}
+
+void returnBook(BOOK book[100], int numberOfOrderedBooks)
+{
+    int answer;
+    cout << "Which book would you like to rate?";
+    showBook(book, numberOfOrderedBooks);
+    cin >> answer;
+
+    for (int i = 0; i < numberOfOrderedBooks; i++)
+    {
+        if (answer == book[i].id)
+        {
+            rateBook(book[i]);
+        }
+    }
+}
+
+void addBook(BOOK book[100], int& numberOfBooks, int& numberOfBooksBeforeAddition)
 {
     int numberOfAddedBooks;
     cout << "How many books would you like to add?" << endl;
@@ -21,7 +65,7 @@ void addBook(BOOK book[100], int &numberOfBooks, int &numberOfBooksBeforeAdditio
     cin >> numberOfAddedBooks;
     numberOfBooks += numberOfAddedBooks;
 
-    for (int i = numberOfBooksBeforeAddition; i < numberOfBooksBeforeAddition+numberOfAddedBooks; i++)
+    for (int i = numberOfBooksBeforeAddition; i < numberOfBooksBeforeAddition + numberOfAddedBooks; i++)
     {
         book[i].id = i;
         cout << "Please insert values" << endl;
@@ -41,79 +85,7 @@ void addBook(BOOK book[100], int &numberOfBooks, int &numberOfBooksBeforeAdditio
     numberOfBooksBeforeAddition = numberOfBooks;
 }
 
-void showBook(BOOK book[100], int &numberOfBooks)
-{
-    for (int i = 0; i < numberOfBooks; i++)
-    {
-        cout << book[i].id << endl;
-        cout << book[i].name << endl;
-        cout << book[i].author << endl;
-        cout << book[i].genre << endl;
-        cout << book[i].year << endl;
-        cout << book[i].rating << endl;
-
-    }
-}
-
-void rateBook(BOOK book)
-{
-    cout << "Select a number from 1 to 10:" << endl;
-    cin >> book.rating;
-    if ((book.rating >= 1) && (book.rating <= 10))
-    {
-        cout << "Thank you for rating this book with a score of " <<book.rating << endl;
-    }
-    else
-    {
-        cout << "Please, input a valid number!" << endl;
-        rateBook(book);
-    }
-}
-
-
-void returnBook(BOOK book[100], int numberOfOrderedBooks) 
-{
-    int answer;
-    cout << "Which book would you like to rate?";
-    showBook(book, numberOfOrderedBooks);
-    cin >> answer;
-    
-    for (int i = 0; i < numberOfOrderedBooks; i++)
-    {
-        if (answer==book[i].id)
-        {
-            rateBook(book[i]);
-        }
-    }
-}
-
-
-void selection(int &selection, BOOK book[100], BOOK bookOrder[100], int &booksTotal, int &booksTotalBeforeAddition, BOOK &rateableBook, int orderedBooksNumber)
-{
-    switch (selection)
-    {
-    case 1:
-        showBook(book,booksTotal);
-        break;
-    case 2:
-        addBook(book,booksTotal,booksTotalBeforeAddition);
-        break;
-    case 3:
-        //Search Book
-        break;
-    case 4:
-        //Order Book
-        break;
-    case 5:
-        returnBook(bookOrder, orderedBooksNumber);
-        break;
-    case 6:
-        //See your ratings
-        break;
-    default:
-        break;
-    }
-}
+void selection(int& selection, BOOK book[100], BOOK bookOrder[100], int& booksTotal, int& booksTotalBeforeAddition, BOOK& rateableBook, int orderedBooksNumber);
 
 
 void MainMenu(BOOK book[100], BOOK bookOrder[100],int &booksTotal, int &booksTotalBeforeAddition, BOOK &rateableBook, int &orderedBooksNumber) 
@@ -132,6 +104,39 @@ void MainMenu(BOOK book[100], BOOK bookOrder[100],int &booksTotal, int &booksTot
 	cout << "Selection: ";
 	cin >> choice;
 	selection(choice,book,bookOrder,booksTotal,booksTotalBeforeAddition,rateableBook, orderedBooksNumber);
+}
+
+void selection(int& selection, BOOK book[100], BOOK bookOrder[100], int& booksTotal, int& booksTotalBeforeAddition, BOOK& rateableBook, int orderedBooksNumber)
+{
+    switch (selection)
+    {
+    case 1:
+        showBook(book, booksTotal);
+        MainMenu(book, bookOrder, booksTotal, booksTotalBeforeAddition, rateableBook, orderedBooksNumber);
+    case 2:
+        addBook(book, booksTotal, booksTotalBeforeAddition);
+        MainMenu(book, bookOrder, booksTotal, booksTotalBeforeAddition, rateableBook, orderedBooksNumber);
+        break;
+    case 3:
+        //Search Book
+        MainMenu(book, bookOrder, booksTotal, booksTotalBeforeAddition, rateableBook, orderedBooksNumber);
+        break;
+    case 4:
+        //Order Book
+        MainMenu(book, bookOrder, booksTotal, booksTotalBeforeAddition, rateableBook, orderedBooksNumber);
+        break;
+    case 5:
+        returnBook(bookOrder, orderedBooksNumber);
+        MainMenu(book, bookOrder, booksTotal, booksTotalBeforeAddition, rateableBook, orderedBooksNumber);
+        break;
+    case 6:
+        //See your ratings
+        MainMenu(book, bookOrder, booksTotal, booksTotalBeforeAddition, rateableBook, orderedBooksNumber);
+        break;
+    default:
+        MainMenu(book, bookOrder, booksTotal, booksTotalBeforeAddition, rateableBook, orderedBooksNumber);
+        break;
+    }
 }
 
 
