@@ -10,7 +10,7 @@ struct BOOK
 	string author;
 	string genre;
     int year;
-	int rating;
+	int rating=0;
 };
 void rateBook(BOOK book)
 {
@@ -106,7 +106,7 @@ void addBook(BOOK book[100], int& numberOfBooks, int& numberOfBooksBeforeAdditio
     numberOfBooksBeforeAddition = numberOfBooks;
 }
 
-void selection(int& selection, BOOK book[100], BOOK bookOrder[100], int& booksTotal, int& booksTotalBeforeAddition, BOOK& rateableBook, int orderedBooksNumber);
+void selection(int& selection, BOOK book[100], BOOK bookOrder[100], int& booksTotal, int& booksTotalBeforeAddition, BOOK& rateableBook, int &orderedBooksNumber);
 
 
 void MainMenu(BOOK book[100], BOOK bookOrder[100],int &booksTotal, int &booksTotalBeforeAddition, BOOK &rateableBook, int &orderedBooksNumber) 
